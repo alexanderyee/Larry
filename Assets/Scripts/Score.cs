@@ -15,7 +15,7 @@ public class Score : MonoBehaviour {
 	}
 
 	void Update(){
-		scoreText.text = "Score:" + curScore.ToString ();
+		scoreText.text = "Score: " + curScore.ToString ();
 	}
 
 	public static void ResetScore(){

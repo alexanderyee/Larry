@@ -11,7 +11,6 @@ public class HeroHit : MonoBehaviour {
 	private Vector2 position = new Vector2 (375, 270);
 	public static bool gameOver;
 	public static bool gameWin;
-
 	// Use this for initialization
 	void Start () {
 		gameOver = false;
@@ -41,7 +40,7 @@ public class HeroHit : MonoBehaviour {
 		}
 	}
 
-	void YouWin(){
+    void YouWin(){
 		MapMovement.mapSpeed = 0;
 		LandscapeMovement.landSpeed = 0;
 		TurnOnWinMsg ();

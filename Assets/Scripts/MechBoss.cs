@@ -16,8 +16,14 @@ public class MechBoss : MonoBehaviour {
 
 	public static bool activate;
 
-	// Use this for initialization
-	void Start () {
+
+    public AudioClip shootSound;
+    private AudioSource source;
+    private float volLowRange = .5f;
+    private float volHighRange = 1f;
+
+    // Use this for initialization
+    void Start () {
 		hp = 20;
 		waveDelay = 200.0f;
 		waveCounter = 200.0f;
@@ -30,8 +36,10 @@ public class MechBoss : MonoBehaviour {
 			//Debug.Log ("Boss Activated");
 			//Debug.Log (waveCounter.ToString ());
 			if (waveCounter == waveDelay) {
-				//Debug.Log ("Time to Fire");
-				Fire (projPrefab);
+                float vol = Random.Range(volLowRange, volHighRange);
+                source.PlayOneShot(shootSound, vol);
+                //Debug.Log ("Time to Fire");
+                Fire (projPrefab);
 				Fire (projPrefab2);
 				Fire (projPrefab3);
 				Fire (projPrefab4);
@@ -45,9 +53,13 @@ public class MechBoss : MonoBehaviour {
 		}
 	}
 
+    void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
 
-	void Fire(GameObject pews){
+    void Fire(GameObject pews){
 		Instantiate (pews, transform.position, Quaternion.identity);
 	}
 

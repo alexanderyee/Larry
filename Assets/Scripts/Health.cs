@@ -15,7 +15,7 @@ public class Health : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		healthText.text = "HP:" + health.ToString ();
+		healthText.text = "HP: " + health.ToString ();
 	}
 
 	public static void ResetHealth(){

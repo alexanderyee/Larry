@@ -10,9 +10,13 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject lightningPrefab;
 	private Rigidbody2D PlayerObject;
 	public static bool canPlay;
-
-	// Use this for initialization
-	void Start () {
+    public AudioClip shootSound;
+    public AudioClip lightningSound;
+    private AudioSource source;
+    private float volLowRange = .5f;
+    private float volHighRange = 1f;
+    // Use this for initialization
+    void Start () {
 		PlayerObject = GetComponent<Rigidbody2D> ();
 		canPlay = true;
 	}
@@ -42,20 +46,35 @@ public class PlayerMovement : MonoBehaviour {
 
 
 			if (Input.GetButtonDown ("Fire1") || Input.GetButtonDown ("Jump")) {
+                float vol = Random.Range(volLowRange, volHighRange);
+                source.PlayOneShot(shootSound, vol);
 				Fire (projPrefab);
 			}
-			
 
-			if (Input.GetButtonDown ("Fire2") || Input.GetButtonDown ("Fire3")) {
-				Fire (lightningPrefab);
-			}
+
+            if (Input.GetButtonDown("Fire2") || Input.GetButtonDown("Fire3"))
+            {
+                if (Cooldown.abilityReady)
+                {
+                    Cooldown.cooldown = 60;
+                    Cooldown.abilityReady = false;
+                    float vol = Random.Range(volLowRange, volHighRange);
+                    source.PlayOneShot(lightningSound, vol);
+                    Fire(lightningPrefab);
+
+                }
+            }
 		}
 
 
 	}
-		
 
-	void Fire(GameObject obj){
+    void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
+
+    void Fire(GameObject obj){
 		Instantiate (obj, transform.position, Quaternion.identity);
 	}
 

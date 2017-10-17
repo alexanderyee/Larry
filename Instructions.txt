@@ -1,0 +1,17 @@
+***********************************
+*Authors: Steven Dinh and Alex Yee*
+***********************************
+
+Instructions
+***********************************
+	-Controls
+		1) Arrow Keys or WASD
+			-Moves character in direction of key press
+		2) LMB or Space Bar
+			-Fires primary weapon
+		3) Left Shift or RMB
+			-Fires lightning
+	-End of Game
+		When the game is finished, you will receive either a "You Win" or "You Lose" message. When this occurs, simply press the space bar to 
+		start the level over again.
+***********************************

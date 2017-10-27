@@ -32,6 +32,8 @@ public class MechBoss : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+    
+
 		if (activate == true) {
 			//Debug.Log ("Boss Activated");
 			//Debug.Log (waveCounter.ToString ());

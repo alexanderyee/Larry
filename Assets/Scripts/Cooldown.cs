@@ -6,18 +6,21 @@ using UnityEngine.UI;
 public class Cooldown : MonoBehaviour {
 
 
-    public static int cooldown = 60;
+    public static int cooldown = 0;
     public static bool abilityReady = true;
-    public Text cooldownText;
+    //public Text cooldownText;
+    public Slider abilitySlider;
+
 
     void Start()
     {
-        cooldownText.text = cooldown.ToString();
+        abilitySlider.value = 120;
     }
 
     // Update is called once per frame
     void Update()
     {
+        abilitySlider.value = Mathf.Abs(120 - cooldown);
 
         if (cooldown == 0)
         {
@@ -26,11 +29,11 @@ public class Cooldown : MonoBehaviour {
         else { cooldown--; }
         if (abilityReady == true)
         {
-            cooldownText.text = "Ability: READY";
+
         }
         else
         {
-            cooldownText.text = "Ability:" + cooldown.ToString();
+
         }
 
     }

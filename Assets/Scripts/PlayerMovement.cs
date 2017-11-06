@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 if (Cooldown.abilityReady)
                 {
-                    Cooldown.cooldown = 60;
+                    Cooldown.cooldown = 120;
                     Cooldown.abilityReady = false;
                     float vol = Random.Range(volLowRange, volHighRange);
                     source.PlayOneShot(lightningSound, vol);

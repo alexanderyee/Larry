@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HeroHit : MonoBehaviour {
-
+    public GameObject hero;
+    Health playerHealth;
 	public Canvas canvas;
 	public GameObject popUp, winPopUp;
 	private GameObject message;
@@ -14,11 +15,13 @@ public class HeroHit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameOver = false;
+        hero = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = hero.GetComponent<Health>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(gameOver == false && Health.health <= 0){
+		if(gameOver == false && Health.currentHealth <= 0){
 			EndGame ();
 		}
 		if (gameOver == true && Input.GetButtonDown ("Jump")) {
@@ -36,7 +39,8 @@ public class HeroHit : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.tag == "Enemy") {
-			Health.health--;
+			//Health.currentHealth--;
+            playerHealth.TakeDamage(1);
 		}
 	}
 

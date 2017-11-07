@@ -68,7 +68,7 @@ public class EnemyFireAIRandomMovement : MonoBehaviour {
                 }
                 Vector3 pos = transform.position;
                 
-                pos.y = Mathf.Clamp(pos.y, -2.5f, 2.2f);
+                pos.y = Mathf.Clamp(pos.y, -2.5f, 2.1f);
                 transform.position = pos;
                 moveCheck++;
 

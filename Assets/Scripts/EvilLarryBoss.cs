@@ -10,10 +10,13 @@ public class EvilLarryBoss : MonoBehaviour {
 
     private float waveDelay;
     private float waveCounter;
+    public bool hit = false;
+    Animator anim;
 
     public static bool activate;
     // Use this for initialization
     void Start () {
+        anim = GetComponent<Animator>();
         health = 40;
         waveDelay = 150.0f;
         waveCounter = 150.0f;
@@ -42,6 +45,15 @@ public class EvilLarryBoss : MonoBehaviour {
             Destroy(gameObject);
             HeroHit.levelThreeDone = true;
         }
+        if (hit)
+        {
+            anim.SetTrigger("Hit");
+            hit = false;
+        }
+        else
+        {
+            anim.SetTrigger("NotHit");
+        }
     }
     void Fire(GameObject obj)
     {
@@ -53,10 +65,14 @@ public class EvilLarryBoss : MonoBehaviour {
         if (col.tag == "Bullet")
         {
             health--;
+            hit = true;
+
         }
         else if (col.tag == "Lightning")
         {
             health = health - 2;
+            hit = true;
+
         }
     }
 

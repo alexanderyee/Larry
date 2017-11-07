@@ -15,6 +15,8 @@ public class MechBoss : MonoBehaviour {
 	private float waveCounter;
 
 	public static bool activate;
+    public bool hit = false;
+    Animator anim;
 
 
     public AudioClip shootSound;
@@ -24,7 +26,9 @@ public class MechBoss : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		hp = 20;
+        anim = GetComponent<Animator>();
+
+        hp = 20;
 		waveDelay = 200.0f;
 		waveCounter = 200.0f;
 		activate = false;
@@ -54,6 +58,14 @@ public class MechBoss : MonoBehaviour {
 			Destroy (gameObject);
 			HeroHit.levelOneDone = true;
 		}
+        if (hit)
+        {
+            anim.SetTrigger("Hit");
+            hit = false;
+        } else
+        {
+            anim.SetTrigger("NotHit");
+        }
 	}
 
     void Awake()
@@ -70,8 +82,12 @@ public class MechBoss : MonoBehaviour {
 		if (col.tag == "Bullet") {
 			hp--;
 			Debug.Log ("Hit Boss");
-		} else if (col.tag == "Lightning") {
+            hit = true;
+        } else if (col.tag == "Lightning") {
 			hp = hp - 2;
+            Debug.Log("Hit Boss");
+            hit = true;
 		}
+
 	}
 }

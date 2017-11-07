@@ -13,10 +13,15 @@ public class Cowboy_Boss : MonoBehaviour {
 
 	public static bool activate;
 
+    public bool hit = false;
+    Animator anim;
 
-	// Use this for initialization
-	void Start () {
-		health = 30;
+
+    // Use this for initialization
+    void Start () {
+        anim = GetComponent<Animator>();
+
+        health = 30;
 		waveDelay = 150.0f;
 		waveCounter = 150.0f;
 		activate = false;
@@ -39,7 +44,16 @@ public class Cowboy_Boss : MonoBehaviour {
 			Destroy (gameObject);
 			HeroHit.levelTwoDone = true;
 		}
-	}
+        if (hit)
+        {
+            anim.SetTrigger("Hit");
+            hit = false;
+        }
+        else
+        {
+            anim.SetTrigger("NotHit");
+        }
+    }
 
 
 	void Fire(GameObject obj){
@@ -49,8 +63,16 @@ public class Cowboy_Boss : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.tag == "Bullet") {
 			health--;
-		} else if (col.tag == "Lightning") {
+            hit = true;
+            Debug.Log("hit cowboy");
+
+        }
+        else if (col.tag == "Lightning") {
 			health = health - 2;
-		}
-	}
+            hit = true;
+
+            Debug.Log("hit cowboy");
+
+        }
+    }
 }

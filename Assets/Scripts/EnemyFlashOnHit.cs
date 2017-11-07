@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashOnHit : MonoBehaviour {
+public class EnemyFlashOnHit : MonoBehaviour {
 
     Animator anim;
     public EnemyGoon enemy;

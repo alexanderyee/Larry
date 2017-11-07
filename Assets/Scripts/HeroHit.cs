@@ -14,7 +14,7 @@ public class HeroHit : MonoBehaviour {
 	public static bool levelOneDone = false;
 	public static bool levelTwoDone = false;
     public static bool levelThreeDone = false;
-
+    public bool hit = false;
     public static bool gameWin;
 	// Use this for initialization
 	void Start () {
@@ -46,10 +46,13 @@ public class HeroHit : MonoBehaviour {
 		if (col.tag == "Enemy") {
 			//Health.currentHealth--;
 			playerHealth.TakeDamage (1);
+            hit = true;
 		} else if (col.tag == "Rocket") {
 			playerHealth.TakeDamage (4);
-		}
-	}
+            hit = true;
+
+        }
+    }
 
     void YouWin(){
 		MapMovement.mapSpeed = 0;

@@ -27,14 +27,6 @@ public class Cooldown : MonoBehaviour {
             abilityReady = true;
         }
         else { cooldown--; }
-        if (abilityReady == true)
-        {
-
-        }
-        else
-        {
-
-        }
 
     }
 

@@ -13,7 +13,9 @@ public class HeroHit : MonoBehaviour {
 	public static bool gameOver;
 	public static bool levelOneDone = false;
 	public static bool levelTwoDone = false;
-	public static bool gameWin;
+    public static bool levelThreeDone = false;
+
+    public static bool gameWin;
 	// Use this for initialization
 	void Start () {
 		gameOver = false;

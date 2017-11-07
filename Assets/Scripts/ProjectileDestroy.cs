@@ -10,7 +10,7 @@ public class ProjectileDestroy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();	
-		//velX = 8f;
+		velX = 8f;
 	}
 	
 	// Update is called once per frame

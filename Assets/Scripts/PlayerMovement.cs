@@ -44,13 +44,13 @@ public class PlayerMovement : MonoBehaviour {
 			transform.position = pos;
 	
 
-
+            /*
 			if (Input.GetButtonDown ("Fire1") || Input.GetButtonDown ("Jump")) {
                 float vol = Random.Range(volLowRange, volHighRange);
                 source.PlayOneShot(shootSound, vol);
 				Fire (projPrefab);
 			}
-
+            */
 
             if (Input.GetButtonDown("Fire2") || Input.GetButtonDown("Fire3"))
             {

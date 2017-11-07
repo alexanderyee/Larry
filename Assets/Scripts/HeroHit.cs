@@ -11,6 +11,8 @@ public class HeroHit : MonoBehaviour {
 	private GameObject message;
 	private Vector2 position = new Vector2 (375, 270);
 	public static bool gameOver;
+	public static bool levelOneDone = false;
+	public static bool levelTwoDone = false;
 	public static bool gameWin;
 	// Use this for initialization
 	void Start () {
@@ -25,22 +27,25 @@ public class HeroHit : MonoBehaviour {
 			EndGame ();
 		}
 		if (gameOver == true && Input.GetButtonDown ("Jump")) {
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 			gameOver = false;
 			PlayerMovement.canPlay = true;
 			TurnOffMsg ();
 			Health.ResetHealth ();
 			Score.ResetScore ();
+			SceneManager.LoadScene ("2-1");
 		}
-		if (gameOver == false && MechBoss.hp <= 0) {
+		if (gameOver == false && MechBoss.hp <= 0 && levelOneDone == true) {
 			YouWin ();
+			levelOneDone = false;
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.tag == "Enemy") {
 			//Health.currentHealth--;
-            playerHealth.TakeDamage(1);
+			playerHealth.TakeDamage (1);
+		} else if (col.tag == "Rocket") {
+			playerHealth.TakeDamage (4);
 		}
 	}
 

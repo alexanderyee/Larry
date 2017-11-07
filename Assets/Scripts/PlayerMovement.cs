@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (canPlay == true) {
 			
 
-			inputX = Input.GetAxisRaw ("Horizontal");
+			//inputX = Input.GetAxisRaw ("Horizontal");
 			inputY = Input.GetAxisRaw ("Vertical");
 
 			if (inputX != 0 || inputY != 0) {
@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour {
 			PlayerObject.velocity = new Vector2 (0, 0);
 			Debug.Log ("Hitting Rock");
 		}
+			
 	}
 
 }

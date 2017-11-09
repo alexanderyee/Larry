@@ -15,6 +15,7 @@ public class HeroHit : MonoBehaviour {
 	public static bool levelTwoDone = false;
     public static bool levelThreeDone = false;
     public bool hit = false;
+
     public static bool gameWin;
 	// Use this for initialization
 	void Start () {
@@ -34,11 +35,30 @@ public class HeroHit : MonoBehaviour {
 			TurnOffMsg ();
 			Health.ResetHealth ();
 			Score.ResetScore ();
-			SceneManager.LoadScene ("2-1");
+			if (MechBoss.hp <= 0 && levelOneDone == true) {
+				SceneManager.LoadScene ("2-1");
+				levelOneDone = false;
+			} else if (Cowboy_Boss.health <= 0 && levelTwoDone == true) {
+				SceneManager.LoadScene ("3-1");
+				levelTwoDone = false;
+			} else if (EvilLarryBoss.health <= 0 && levelThreeDone == true) {
+				levelThreeDone = false;
+				Debug.Log ("Quitting App");
+				Application.Quit ();
+			} else {
+				SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+			}
 		}
 		if (gameOver == false && MechBoss.hp <= 0 && levelOneDone == true) {
 			YouWin ();
-			levelOneDone = false;
+			//levelOneDone = false;
+		}
+		if (gameOver == false && Cowboy_Boss.health <= 0 && levelTwoDone == true) {
+			YouWin ();
+			//levelTwoDone = false;
+		}
+		if (gameOver == false && EvilLarryBoss.health <= 0 && levelThreeDone == true) {
+			YouWin ();
 		}
 	}
 
@@ -47,7 +67,7 @@ public class HeroHit : MonoBehaviour {
 			//Health.currentHealth--;
 			playerHealth.TakeDamage (1);
             hit = true;
-		} else if (col.tag == "Rocket") {
+        } else if (col.tag == "Rocket") {
 			playerHealth.TakeDamage (4);
             hit = true;
 

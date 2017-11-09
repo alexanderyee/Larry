@@ -18,11 +18,11 @@ public class EnemyGoon : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col){
-		if (col.tag == "Bullet") {
+		if (col.tag == "Bullet" && dieDelay == 30) {
 			Score.curScore += 100;
 			Debug.Log ("Enemy hit");
             hit = true;
-		} else if (col.tag == "Lightning") {
+		} else if (col.tag == "Lightning" && dieDelay == 30) {
 			Score.curScore += 100;
 			Debug.Log ("Enemy shocked");
             hit = true;

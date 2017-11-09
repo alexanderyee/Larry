@@ -20,4 +20,14 @@ public class TestDestroy : MonoBehaviour {
 	void OnCollision2dEnter(Collision2D collision){
 		Destroy (gameObject);
 	}
+
+	void OnTriggerEnter2D(Collider2D col){
+		if (col.tag == "Rock") {
+			Destroy (gameObject);
+		} else if (col.tag == "Enemy") {
+			Destroy (gameObject);
+		} else if (col.tag == "Bad_Guy") {
+			Destroy (gameObject);
+		}
+	}
 }

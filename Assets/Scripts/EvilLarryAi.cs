@@ -15,7 +15,7 @@ public class EvilLarryAi : MonoBehaviour {
     // Use this for initialization
     void Start () {
         evilLarry = GetComponent<Rigidbody2D>();
-        hero = GameObject.Find("Hero 1");
+        hero = GameObject.Find("Hero");
 	}
 	
 	// Update is called once per frame

@@ -11,18 +11,20 @@ public class EnemyFireAIRandomMovement : MonoBehaviour {
     private float moveCheck = 60f;
     private float speed = 3.0f;
 
-    public GameObject bullet;
-	//public Rigidbody2D bulletPrefab;
-	//public Transform aimPoint;
-	//public Transform shootPoint;
-	//public float bulletSpeed = 300.0f;
+    public Rigidbody2D bullet;
+    public GameObject hero;
+
+    //public Rigidbody2D bulletPrefab;
+    //public Transform aimPoint;
+    //public Transform shootPoint;
+    //public float bulletSpeed = 300.0f;
 
     public AudioClip shootSound;
     private AudioSource source;
     private float volLowRange = .3f;
     private float volHighRange = .7f;
     private Rigidbody2D enemy;
-
+    public float bulletSpeed;
 
     // Use this for initialization
     void Start()
@@ -30,6 +32,8 @@ public class EnemyFireAIRandomMovement : MonoBehaviour {
         fireCounter = 0;
         fireTime = 120;
         enemy = GetComponent<Rigidbody2D>();
+        hero = GameObject.Find("Hero");
+
     }
 
     // Update is called once per frame
@@ -80,9 +84,17 @@ public class EnemyFireAIRandomMovement : MonoBehaviour {
         }
     }
 
-    void Fire(GameObject obj)
+    void Fire(Rigidbody2D obj)
     {
-        Instantiate(obj, transform.position, Quaternion.identity);
+        Vector3 dir = hero.transform.position - transform.position;
+        dir = Vector3.Normalize(dir * bulletSpeed);
+        Rigidbody2D firedBullet;
+        if (dir.x < 0)
+        {
+            firedBullet = Instantiate(obj, transform.position, Quaternion.identity) as Rigidbody2D;
+            firedBullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
+            firedBullet.GetComponent<Rigidbody2D>().AddForce(dir * bulletSpeed);
+        }
     }
 
 	/*void Fire(){

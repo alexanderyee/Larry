@@ -8,21 +8,23 @@ public class EnemyFireAI : MonoBehaviour {
 	private int fireCounter;
 	private int fireTime;
 
-	public GameObject bullet;
+	public Rigidbody2D bullet;
+    public GameObject hero; 
 
     public AudioClip shootSound;
     private AudioSource source;
     private float volLowRange = .3f;
     private float volHighRange = .7f;
-
+    public float bulletSpeed;
     // Use this for initialization
     void Start () {
 		fireCounter = 0;
 		fireTime = 80;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        hero = GameObject.Find("Hero");
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
         bool onScreen = (screenPoint.x > 0 && screenPoint.y > 0 && screenPoint.x < 1 && screenPoint.y < 1);
@@ -43,8 +45,16 @@ public class EnemyFireAI : MonoBehaviour {
         }
     }
 
-	void Fire(GameObject obj){
-		Instantiate (obj, transform.position, Quaternion.identity);
+	void Fire(Rigidbody2D obj){
+        Vector3 dir = hero.transform.position - transform.position;
+        dir = Vector3.Normalize(dir*bulletSpeed);
+        Rigidbody2D firedBullet;
+        if (dir.x < 0)
+        {
+            firedBullet = Instantiate(obj, transform.position, Quaternion.identity) as Rigidbody2D;
+            firedBullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
+            firedBullet.GetComponent<Rigidbody2D>().AddForce(dir * bulletSpeed);
+        }
     }
 
     void Awake()

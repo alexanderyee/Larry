@@ -49,7 +49,7 @@ public class EnemyFireAI : MonoBehaviour {
         Vector3 dir = hero.transform.position - transform.position;
         dir = Vector3.Normalize(dir*bulletSpeed);
         Rigidbody2D firedBullet;
-        if (dir.x < 0)
+        if (dir.x < -.4)
         {
             firedBullet = Instantiate(obj, transform.position, Quaternion.identity) as Rigidbody2D;
             firedBullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;

@@ -12,6 +12,10 @@ public class EnemyFireAIRandomMovement : MonoBehaviour {
     private float speed = 3.0f;
 
     public GameObject bullet;
+	//public Rigidbody2D bulletPrefab;
+	//public Transform aimPoint;
+	//public Transform shootPoint;
+	//public float bulletSpeed = 300.0f;
 
     public AudioClip shootSound;
     private AudioSource source;
@@ -37,7 +41,7 @@ public class EnemyFireAIRandomMovement : MonoBehaviour {
         if (onScreen == true)
         {
 
-            if (HeroHit.gameOver == false)
+			if (StateManager.gameOver == false)
             {
                 fireCounter++;
                 if (fireCounter == fireTime)
@@ -80,6 +84,25 @@ public class EnemyFireAIRandomMovement : MonoBehaviour {
     {
         Instantiate(obj, transform.position, Quaternion.identity);
     }
+
+	/*void Fire(){
+		Vector3 playerPos = new Vector3(aimPoint.position.x, aimPoint.position.y);
+		Vector3 screenPos = Camera.main.ScreenToWorldPoint (new Vector3 (playerPos.x, playerPos.y, transform.position.z));
+
+		Quaternion q = Quaternion.FromToRotation (Vector3.up, screenPos - transform.position);
+
+		Rigidbody2D bullet;
+
+
+		if (transform.localScale.x < 0) {
+
+			bullet = Instantiate (bulletPrefab, new Vector3 (transform.position.x - shootPoint.localPosition.x, transform.position.y - shootPoint.localPosition.y, transform.position.z), q) as Rigidbody2D;
+		} else {
+			bullet = Instantiate (bulletPrefab, new Vector3 (transform.position.x + shootPoint.localPosition.x, transform.position.y + shootPoint.localPosition.y, transform.position.z), q) as Rigidbody2D;
+		}
+		bullet.GetComponent<Rigidbody2D> ().AddForce (bullet.transform.up * bulletSpeed);
+		Debug.Log ("firing");
+	}*/
 
     void Awake()
     {

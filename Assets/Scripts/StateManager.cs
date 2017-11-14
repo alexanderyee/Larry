@@ -3,30 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HeroHit : MonoBehaviour {
-    public GameObject hero;
-    Health playerHealth;
-	//public Canvas canvas;
-	//public GameObject popUp, winPopUp;
-	//private GameObject message;
-	//private Vector2 position = new Vector2 (375, 270);
-	//public static bool gameOver;
-	//public static bool levelOneDone = false;
-	//public static bool levelTwoDone = false;
-    //public static bool levelThreeDone = false;
-    public bool hit = false;
+public class StateManager : MonoBehaviour {
+	public static bool gameOver;
+	public static bool levelOneDone = false;
+	public static bool levelTwoDone = false;
+	public static bool levelThreeDone = false; 
+	public GameObject popUp, winPopUp;
+	public Canvas canvas;
 
-    public static bool gameWin;
+	private GameObject message;
+	private Vector2 position = new Vector2 (375, 270);
+
+
+
+
+
 	// Use this for initialization
 	void Start () {
-		//gameOver = false;
-        hero = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = hero.GetComponent<Health>();
+		gameOver = false;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		/*if(gameOver == false && Health.currentHealth <= 0){
+		if(gameOver == false && Health.currentHealth <= 0){
 			EndGame ();
 		}
 		if (gameOver == true && Input.GetButtonDown ("Jump")) {
@@ -59,22 +59,10 @@ public class HeroHit : MonoBehaviour {
 		}
 		if (gameOver == false && EvilLarryBoss.health <= 0 && levelThreeDone == true) {
 			YouWin ();
-		}*/
+		}
 	}
 
-	void OnTriggerEnter2D(Collider2D col){
-		if (col.tag == "Enemy") {
-			//Health.currentHealth--;
-			playerHealth.TakeDamage (1);
-            hit = true;
-        } else if (col.tag == "Rocket") {
-			playerHealth.TakeDamage (4);
-            hit = true;
-
-        }
-    }
-
-    /*void YouWin(){
+	void YouWin(){
 		MapMovement.mapSpeed = 0;
 		LandscapeMovement.landSpeed = 0;
 		TurnOnWinMsg ();
@@ -106,5 +94,5 @@ public class HeroHit : MonoBehaviour {
 
 	void TurnOffMsg(){
 		DestroyObject (message);
-	}*/
+	}
 }

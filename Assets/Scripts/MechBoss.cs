@@ -56,7 +56,7 @@ public class MechBoss : MonoBehaviour {
 		}
 		if (hp < 1) {
 			Destroy (gameObject);
-			HeroHit.levelOneDone = true;
+			StateManager.levelOneDone = true;
 		}
         if (hit)
         {

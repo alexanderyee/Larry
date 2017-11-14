@@ -43,7 +43,7 @@ public class EvilLarryBoss : MonoBehaviour {
         if (health < 1)
         {
             Destroy(gameObject);
-            HeroHit.levelThreeDone = true;
+			StateManager.levelThreeDone = true;
         }
         if (hit)
         {

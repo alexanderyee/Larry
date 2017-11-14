@@ -42,7 +42,7 @@ public class Cowboy_Boss : MonoBehaviour {
 
 		if (health < 1) {
 			Destroy (gameObject);
-			HeroHit.levelTwoDone = true;
+			StateManager.levelTwoDone = true;
 		}
         if (hit)
         {

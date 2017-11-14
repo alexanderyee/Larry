@@ -29,7 +29,7 @@ public class EnemyFireAI : MonoBehaviour {
         if (onScreen == true)
         {
 
-            if (HeroHit.gameOver == false)
+			if (StateManager.gameOver == false)
             {
                 fireCounter++;
                 if (fireCounter == fireTime)

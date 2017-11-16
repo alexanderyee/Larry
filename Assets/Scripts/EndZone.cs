@@ -20,7 +20,7 @@ public class EndZone : MonoBehaviour {
 			LandscapeMovement.landSpeed = 0.0f;
 			MapMovement.mapSpeed = 0.0f;
 			MechBoss.activate = true;
-			Debug.Log ("Hit End Zone");
+			//Debug.Log ("Hit End Zone");
 		}
 
 	}

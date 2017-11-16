@@ -42,14 +42,6 @@ public class PlayerMovement : MonoBehaviour {
 			pos.x = Mathf.Clamp (pos.x, -5.8f, 5f);
 			pos.y = Mathf.Clamp (pos.y, -4f, 2.4f);
 			transform.position = pos;
-	
-
-            
-			if (Input.GetButtonDown ("Fire1") || Input.GetButtonDown ("Jump")) {
-                float vol = Random.Range(volLowRange, volHighRange);
-                source.PlayOneShot(shootSound, vol);
-				//Fire (projPrefab);
-			}
             
 
             if (Input.GetButtonDown("Fire2") || Input.GetButtonDown("Fire3"))

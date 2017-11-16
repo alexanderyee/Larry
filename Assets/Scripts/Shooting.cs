@@ -25,37 +25,39 @@ public class Shooting : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Time.time >= coolDown) {
-			if (Input.GetMouseButton (0)) {
-				Fire ();
-			}
             if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump") || Input.GetMouseButton(0))
             {
-                print("wat");
-                float vol = Random.Range(volLowRange, volHighRange);
-                source.PlayOneShot(shootSound, vol);
                 Fire();
             }
         }
 	}
 
 	void Fire(){
-		Vector3 mousePos = Input.mousePosition;
-		Vector3 screenPos = Camera.main.ScreenToWorldPoint (new Vector3 (mousePos.x, mousePos.y, transform.position.z));
+
+        float vol = Random.Range(volLowRange, volHighRange);
+        source.PlayOneShot(shootSound, vol);
+        Vector3 mousePos = Input.mousePosition;
+		Vector3 screenPos = Camera.main.ScreenToWorldPoint(mousePos);
 
 		Quaternion q = Quaternion.FromToRotation (Vector3.up, screenPos - transform.position);
 
 		Rigidbody2D bullet;
-
+        Vector3 shootPos;
 		if (transform.localScale.x < 0) {
 
-			bullet = Instantiate (bulletPrefab, new Vector3 (transform.position.x - shootPoint.localPosition.x, transform.position.y - shootPoint.localPosition.y, transform.position.z), q) as Rigidbody2D;
-            print("<0");
+            shootPos = new Vector3 (transform.position.x - shootPoint.localPosition.x, transform.position.y - shootPoint.localPosition.y, transform.position.z);
+           // print("<0");
 		} else {
-			bullet = Instantiate (bulletPrefab, new Vector3 (transform.position.x + shootPoint.localPosition.x, transform.position.y + shootPoint.localPosition.y, transform.position.z), q) as Rigidbody2D;
-            print(">0");
+            shootPos = new Vector3(transform.position.x + shootPoint.localPosition.x, transform.position.y + shootPoint.localPosition.y, transform.position.z);
+            //print(">0");
 		}
-
-		bullet.GetComponent<Rigidbody2D> ().AddForce (bullet.transform.up * bulletSpeed);
+        Vector3 bulletDir = screenPos - shootPoint.position;
+        bulletDir.Normalize();
+        Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(bulletDir.y, bulletDir.x) * Mathf.Rad2Deg);
+        bullet = Instantiate(bulletPrefab, shootPoint.position, rotation) as Rigidbody2D;
+        
+        bullet.GetComponent<Rigidbody2D>().velocity = bulletDir * bulletSpeed;
+        bullet.GetComponent<Rigidbody2D> ().AddForce(bulletDir * bulletSpeed);
 		coolDown = Time.time + attackSpeed;
 	}
     void Awake()

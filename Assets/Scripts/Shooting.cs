@@ -52,13 +52,27 @@ public class Shooting : MonoBehaviour {
             //print(">0");
 		}
         Vector3 bulletDir = screenPos - shootPoint.position;
+        bulletDir.y = bulletDir.y - .115f; // fine tuning for shooting at mouse
+        // fix for shooting close to mouse LMAO
+        if (bulletDir.x < .5)
+        {
+            // mouse is too close to player. just shoot straight.
+            bulletDir = Vector3.right;
+        }
+        else
+        {
+            bulletDir.x = bulletDir.x * 1000000;
+            bulletDir.y = bulletDir.y * 1000000;
+        }
         bulletDir.Normalize();
         Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(bulletDir.y, bulletDir.x) * Mathf.Rad2Deg);
         bullet = Instantiate(bulletPrefab, shootPoint.position, rotation) as Rigidbody2D;
-        
+        print(bulletDir.x + ", " + bulletDir.y);
         bullet.GetComponent<Rigidbody2D>().velocity = bulletDir * bulletSpeed;
         bullet.GetComponent<Rigidbody2D> ().AddForce(bulletDir * bulletSpeed);
-		coolDown = Time.time + attackSpeed;
+        print(bullet.GetComponent<Rigidbody2D>().velocity);
+
+        coolDown = Time.time + attackSpeed;
 	}
     void Awake()
     {

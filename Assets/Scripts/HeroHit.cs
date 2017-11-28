@@ -66,12 +66,15 @@ public class HeroHit : MonoBehaviour {
 		if (col.tag == "Enemy") {
 			//Health.currentHealth--;
 			playerHealth.TakeDamage (1);
-            hit = true;
-        } else if (col.tag == "Rocket") {
+			hit = true;
+		} else if (col.tag == "Rocket") {
 			playerHealth.TakeDamage (4);
-            hit = true;
+			hit = true;
 
-        }
+		} else if (col.tag == "Grenade") {
+			playerHealth.TakeDamage (3);
+			hit = true;
+		}
     }
 
     /*void YouWin(){

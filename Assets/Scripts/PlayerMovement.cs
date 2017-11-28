@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
 			transform.position = pos;
             
 
-            if (Input.GetButtonDown("Fire2") || Input.GetButtonDown("Fire3"))
+            if (Input.GetButtonDown("Fire2"))
             {
                 if (Cooldown.abilityReady)
                 {

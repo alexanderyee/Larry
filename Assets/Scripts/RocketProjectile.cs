@@ -17,7 +17,7 @@ public class RocketProjectile : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2 (velX, velY);
+        //rb.velocity = new Vector2 (velX, velY);
 
         Vector3 bullScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
         if (bullScreenPos.x >= Screen.width || bullScreenPos.x <= 0)

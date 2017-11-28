@@ -148,11 +148,11 @@ public class MechBoss : MonoBehaviour
         num = Random.Range(-25, 26);
         if (num > 0)
         {
-            mech.velocity = transform.up * Random.Range(9,15) * Time.deltaTime;
+            mech.velocity = transform.up * Random.Range(20,35) * Time.deltaTime;
         }
         else
         {
-            mech.velocity = transform.up * Random.Range(9, 15) * Time.deltaTime * -1;
+            mech.velocity = transform.up * Random.Range(20, 35) * Time.deltaTime * -1;
         }
     }
 }

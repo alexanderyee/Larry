@@ -5,8 +5,11 @@ using UnityEngine;
 public class Cowboy_Boss : MonoBehaviour {
 
 	public static int health;
-	public GameObject bullet;
-	public GameObject rocket;
+	public Rigidbody2D bullet;
+	public Rigidbody2D rocket;
+	public GameObject hero;
+	public float bulletSpeed;
+
 
 	private float waveDelay;
 	private float waveCounter;
@@ -56,8 +59,20 @@ public class Cowboy_Boss : MonoBehaviour {
     }
 
 
-	void Fire(GameObject obj){
+	/*void Fire(GameObject obj){
 		Instantiate (obj, transform.position, Quaternion.identity);
+	}*/
+
+	void Fire(Rigidbody2D obj){
+		Vector3 dir = hero.transform.position - transform.position;
+		dir = Vector3.Normalize(dir*bulletSpeed);
+		Rigidbody2D firedBullet;
+		if (dir.x < -.4)
+		{
+			firedBullet = Instantiate(obj, transform.position, Quaternion.identity) as Rigidbody2D;
+			firedBullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
+			firedBullet.GetComponent<Rigidbody2D>().AddForce(dir * bulletSpeed);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col){

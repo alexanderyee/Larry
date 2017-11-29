@@ -67,9 +67,12 @@ public class Cowboy_Boss : MonoBehaviour {
 		Vector3 dir = hero.transform.position - transform.position;
 		dir = Vector3.Normalize(dir*bulletSpeed);
 		Rigidbody2D firedBullet;
+
+		Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+
 		if (dir.x < -.4)
 		{
-			firedBullet = Instantiate(obj, transform.position, Quaternion.identity) as Rigidbody2D;
+			firedBullet = Instantiate(obj, transform.position, rotation) as Rigidbody2D;
 			firedBullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
 			firedBullet.GetComponent<Rigidbody2D>().AddForce(dir * bulletSpeed);
 		}

@@ -28,15 +28,7 @@ public class RocketProjectile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Rock")
-        {
-            Destroy(gameObject);
-        }
-        else if (col.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
-        else if (col.tag == "Bullet")
+		if (col.tag == "Rock" || col.tag == "Player" || col.tag == "Bullet" || col.tag == "Shield")
         {
             Destroy(gameObject);
         }

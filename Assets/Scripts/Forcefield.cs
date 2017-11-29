@@ -22,7 +22,7 @@ public class Forcefield : MonoBehaviour {
 	void Update () {
 		if (Input.GetButtonDown ("Fire3")) {
 			if (Cooldown.abilityReady) {
-				Cooldown.cooldown = 120;
+				Cooldown.cooldown = 160;
 				Cooldown.abilityReady = false;
 				shieldOn = true;
 				Shield ();

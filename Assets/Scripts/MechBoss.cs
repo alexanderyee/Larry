@@ -6,11 +6,7 @@ public class MechBoss : MonoBehaviour
 {
 
     public static int hp;
-    public GameObject projPrefab;
-    public GameObject projPrefab2;
-    public GameObject projPrefab3;
-    public GameObject projPrefab4;
-    public GameObject projPrefab5;
+	public Rigidbody2D projPrefab;
 
     private float waveDelay;
     private float waveCounter;
@@ -20,6 +16,8 @@ public class MechBoss : MonoBehaviour
     private float moveDelay;
     private float moveCheck;
     private float num;
+	public float bulletSpeed;
+	public int q;
 
     public static bool activate;
     public bool hit = false;
@@ -60,11 +58,23 @@ public class MechBoss : MonoBehaviour
                 float vol = Random.Range(volLowRange, volHighRange);
                 source.PlayOneShot(shootSound, vol);
                 //Debug.Log ("Time to Fire");
-                Fire(projPrefab);
-                Fire(projPrefab2);
+				Fire(projPrefab, q);
+				q++;
+				Fire (projPrefab, q);
+				q++;
+				Fire (projPrefab, q);
+				q++;
+				Fire (projPrefab, q);
+				q++;
+				Fire (projPrefab, q);
+				q=0;
+
+                
+
+				/*Fire(projPrefab2);
                 Fire(projPrefab3);
                 Fire(projPrefab4);
-                Fire(projPrefab5);
+                Fire(projPrefab5);*/
                 waveCounter = 0f;
             }
             waveCounter = waveCounter + 1;
@@ -120,10 +130,32 @@ public class MechBoss : MonoBehaviour
     }
 
 
-    void Fire(GameObject pews)
+    /*void Fire(GameObject pews)
     {
         Instantiate(pews, transform.position, Quaternion.identity);
-    }
+    }*/
+
+	void Fire(Rigidbody2D obj, int turn){
+		Vector3 dir;
+		if (turn == 0) {
+			dir = new Vector3(-8, 5);
+		} else if (turn == 1) {
+			dir = new Vector3 (-8, -5);
+		} else if (turn == 2) {
+			dir = new Vector3 (-8, 0);
+		} else if (turn == 3) {
+			dir = new Vector3 (-8, 2.5f);
+		} else {
+			dir = new Vector3 (-8, -2.5f);
+		}
+		Rigidbody2D firedBullet;
+		dir = Vector3.Normalize (dir * bulletSpeed);
+
+		firedBullet = Instantiate (obj, transform.position, Quaternion.identity) as Rigidbody2D;
+		firedBullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
+		firedBullet.GetComponent<Rigidbody2D>().AddForce(dir * bulletSpeed);
+	
+	}
 
     void OnTriggerEnter2D(Collider2D col)
     {

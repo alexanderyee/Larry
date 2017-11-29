@@ -17,13 +17,21 @@ public class Health : MonoBehaviour {
     PlayerMovement playerMovement;                              // Reference to the player's movement.
     static bool isDead;                                                // Whether the player is dead.
     public AudioClip deathClip;                                 // The audio clip to play when the player dies.
+
+	private bool godMode;
+
     void Start () {
         //healthText.text = currentHealth.ToString ();
         healthSlider.value = currentHealth;
+		godMode = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (godMode == true) {
+			currentHealth = 10;
+		}
+
         if (damaged)
         { //damageImage.color = flashColor;
         } else

@@ -6,9 +6,10 @@ public class EnemyGoon : MonoBehaviour {
 
     public float dieDelay = 30;
     public bool hit = false;
+	private int health;
 	// Use this for initialization
 	void Start () {
-		
+		health = 3;
 	}
 	
 	// Update is called once per frame
@@ -19,12 +20,16 @@ public class EnemyGoon : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D col){
 		if (col.tag == "Bullet" && dieDelay == 30) {
-			Score.curScore += 100;
-			Debug.Log ("Enemy hit");
-            hit = true;
+			health--;
+			/*Score.curScore += 100;
+            hit = true;*/
+			if (health <= 0) {
+				Score.curScore += 100;
+				hit = true;
+			}
+				
 		} else if (col.tag == "Lightning" && dieDelay == 30) {
 			Score.curScore += 100;
-			Debug.Log ("Enemy shocked");
             hit = true;
 		}
 	}

@@ -5,8 +5,10 @@ using UnityEngine;
 public class EvilLarryBoss : MonoBehaviour {
 
     public static int health;
-    public GameObject bullet;
-    public GameObject rocket;
+	public Rigidbody2D bullet;
+    public Rigidbody2D rocket;
+	public GameObject hero;
+	public int bulletSpeed;
 
     private float waveDelay;
     private float waveCounter;
@@ -18,8 +20,8 @@ public class EvilLarryBoss : MonoBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         health = 40;
-        waveDelay = 150.0f;
-        waveCounter = 150.0f;
+        waveDelay = 60.0f;
+        waveCounter = 60.0f;
         activate = false;
     }
 	
@@ -55,10 +57,25 @@ public class EvilLarryBoss : MonoBehaviour {
             anim.SetTrigger("NotHit");
         }
     }
-    void Fire(GameObject obj)
+    /*void Fire(GameObject obj)
     {
         Instantiate(obj, transform.position, Quaternion.identity);
-    }
+    }*/
+
+	void Fire(Rigidbody2D obj){
+		Vector3 dir = hero.transform.position - transform.position;
+		dir = Vector3.Normalize(dir*bulletSpeed);
+		Rigidbody2D firedBullet;
+
+		Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+
+		if (dir.x < -.4)
+		{
+			firedBullet = Instantiate(obj, transform.position, rotation) as Rigidbody2D;
+			firedBullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
+			firedBullet.GetComponent<Rigidbody2D>().AddForce(dir * bulletSpeed);
+		}
+	}
 
     void OnTriggerEnter2D(Collider2D col)
     {

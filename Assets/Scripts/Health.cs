@@ -23,7 +23,7 @@ public class Health : MonoBehaviour {
     void Start () {
         //healthText.text = currentHealth.ToString ();
         healthSlider.value = currentHealth;
-		godMode = true;
+		godMode = false;
 	}
 	
 	// Update is called once per frame

@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (canPlay == true) {
 			
 
-			//inputX = Input.GetAxisRaw ("Horizontal");
+			inputX = Input.GetAxisRaw ("Horizontal");
 			inputY = Input.GetAxisRaw ("Vertical");
 
 			if (inputX != 0 || inputY != 0) {
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			Vector3 pos = transform.position;
 
-			pos.x = Mathf.Clamp (pos.x, -5.8f, 5f);
+			pos.x = Mathf.Clamp (pos.x, -5.8f, -1.0f);
 			pos.y = Mathf.Clamp (pos.y, -4f, 2.4f);
 			transform.position = pos;
             
@@ -57,7 +57,9 @@ public class PlayerMovement : MonoBehaviour {
                 }
             }
 		}
-
+		else{
+			PlayerObject.velocity = new Vector2 (0, 0);
+		}
 
 	}
 

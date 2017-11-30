@@ -31,9 +31,13 @@ public class CowBoyBossSpawn : MonoBehaviour {
 	}
 
 	void SpawnGoonsRoundOne(){
-		newGoon = Instantiate (goonPrefabRoundOne, new Vector3 (transform.position.x-2, transform.position.y+2), Quaternion.identity);
+		/*newGoon = Instantiate (goonPrefabRoundOne, new Vector3 (transform.position.x-2, transform.position.y+2), Quaternion.identity);
 		newGoon = Instantiate (goonPrefabRoundOne, new Vector3 (transform.position.x-2, transform.position.y-2), Quaternion.identity);
-		newGoon = Instantiate (goonPrefabRoundOne, new Vector3 (transform.position.x-2, transform.position.y), Quaternion.identity);
+		newGoon = Instantiate (goonPrefabRoundOne, new Vector3 (transform.position.x-2, transform.position.y), Quaternion.identity);*/
+
+		newGoon = Instantiate (goonPrefabRoundOne, new Vector3 (3, 1), Quaternion.identity);
+		newGoon = Instantiate (goonPrefabRoundOne, new Vector3 (3, -1), Quaternion.identity);
+		newGoon = Instantiate (goonPrefabRoundOne, new Vector3 (3, -3), Quaternion.identity);
 	}
 
 	void SpawnGoonsRoundTwo(){

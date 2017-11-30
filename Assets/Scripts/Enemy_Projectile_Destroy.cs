@@ -28,11 +28,8 @@ public class Enemy_Projectile_Destroy : MonoBehaviour {
 			Destroy (gameObject);
 		} else if (col.tag == "Player") {
 			Destroy (gameObject);
-		} else if (col.tag == "Bullet") {
-			Destroy (gameObject);
 		} else if (col.tag == "Shield") {
 			Destroy (gameObject);
-			Debug.Log ("Hit Shield");
 		}
 	}
 }

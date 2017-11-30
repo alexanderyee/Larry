@@ -159,18 +159,18 @@ public class MechBoss : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Bullet")
-        {
-            hp--;
-            Debug.Log("Hit Boss");
-            hit = true;
-        }
-        else if (col.tag == "Lightning")
-        {
-            hp = hp - 2;
-            Debug.Log("Hit Boss");
-            hit = true;
-        }
+		if (col.tag == "Bullet") {
+			hp--;
+			//Debug.Log("Hit Boss");
+			hit = true;
+		} else if (col.tag == "Lightning") {
+			hp = hp - 4;
+			//Debug.Log("Hit Boss");
+			hit = true;
+		} else if (col.tag == "Rifle") {
+			hp = hp - 3;
+			hit = true;
+		}
 
     }
 

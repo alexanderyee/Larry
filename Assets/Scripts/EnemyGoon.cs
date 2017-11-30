@@ -28,7 +28,7 @@ public class EnemyGoon : MonoBehaviour {
 				hit = true;
 			}
 				
-		} else if (col.tag == "Lightning" && dieDelay == 30) {
+		} else if ((col.tag == "Lightning" && dieDelay == 30) || (col.tag == "Rifle" && dieDelay == 30)) {
 			Score.curScore += 100;
             hit = true;
 		}

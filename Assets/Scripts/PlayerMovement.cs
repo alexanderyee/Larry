@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
 			transform.position = pos;
             
 
-            if (Input.GetButtonDown("Fire2"))
+            /*if (Input.GetButtonDown("Fire2"))
             {
                 if (Cooldown.abilityReady)
                 {
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
                     Fire(lightningPrefab);
 
                 }
-            }
+            }*/
 		}
 		else{
 			PlayerObject.velocity = new Vector2 (0, 0);

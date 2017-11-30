@@ -9,6 +9,10 @@ public class WeaponManager : MonoBehaviour {
 	public static string curWeapon;
 	private int i;
 
+	public Sprite pistol;
+	public Sprite rifle;
+	public Sprite shotgun;
+
 	// Use this for initialization
 	void Start () {
 		weaponList.Add ("Pistol");
@@ -20,15 +24,34 @@ public class WeaponManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             i--;
-        } else if (Input.GetKey(KeyCode.E))
+        } else if (Input.GetKeyDown(KeyCode.E))
         {
             i++;
         }
         i = i % weaponList.Count;
-        curWeapon = weaponList[i];
+		//print (i);
+		print(curWeapon);
+		curWeapon = weaponList[i];
+		ChangeSprite (curWeapon);
 
     }
+
+	void ChangeSprite(string s){
+		if (s == "Pistol") {
+			this.GetComponent<SpriteRenderer> ().sprite = pistol;
+			//gameObject.GetComponent<SpriteRenderer> ().sprite = Resources.Load ("Hero", typeof(Sprite)) as Sprite;
+			Debug.Log("Pistol Sprite");
+		} else if (s == "Rifle") {
+			this.GetComponent<SpriteRenderer> ().sprite = rifle;
+			//gameObject.GetComponent<SpriteRenderer> ().sprite = Resources.Load ("HeroRifle", typeof(Sprite)) as Sprite;
+			Debug.Log ("Rifle Sprite");
+		} else {
+			this.GetComponent<SpriteRenderer> ().sprite = shotgun;
+			//gameObject.GetComponent<SpriteRenderer> ().sprite = Resources.Load ("HeroShotgun", typeof(Sprite)) as Sprite;
+			Debug.Log("Shotgun Sprite");
+		}
+	}
 }

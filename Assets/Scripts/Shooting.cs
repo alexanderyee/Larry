@@ -25,11 +25,14 @@ public class Shooting : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time >= coolDown) {
+
+        print("Cooldown: " + coolDown);
+        print("Time.time: " + Time.time);
+        if (Time.time >= coolDown) {
 			if ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump") || Input.GetMouseButton(0)) && PlayerMovement.canPlay == true)
             {
 				weaponUsed = WeaponManager.curWeapon;
-
+                
 				if (weaponUsed == "Pistol") {
 					Fire();
 				}
@@ -38,9 +41,10 @@ public class Shooting : MonoBehaviour {
                 //Fire();
             }
         }
-	}
 
-	void Fire(){
+    }
+
+    void Fire(){
 
         float vol = Random.Range(volLowRange, volHighRange);
         source.PlayOneShot(shootSound, vol);

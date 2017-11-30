@@ -20,20 +20,15 @@ public class WeaponManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.Q) && i > 0) {
-			i--;
-			curWeapon = weaponList [i];
-		} else if (Input.GetKey (KeyCode.E) && i < 2) {
-			i++;
-			curWeapon = weaponList [i];
-		} else if (Input.GetKey (KeyCode.Q) && i == 0) {
-			i = 2;
-			curWeapon = weaponList [i];
-		} else if (Input.GetKey (KeyCode.E) && i == 2) {
-			i = 0;
-			curWeapon = weaponList [i];
-		}
-			
-			
-	}
+        if (Input.GetKey(KeyCode.Q))
+        {
+            i--;
+        } else if (Input.GetKey(KeyCode.E))
+        {
+            i++;
+        }
+        i = i % weaponList.Count;
+        curWeapon = weaponList[i];
+
+    }
 }

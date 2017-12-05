@@ -69,8 +69,11 @@ public class Cowboy_Boss : MonoBehaviour {
 		Rigidbody2D firedBullet;
 
 		Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
-
-		if (dir.x < -.4)
+        if (obj.tag == "Enemy")
+        {
+            rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 180);
+        }
+        if (dir.x < -.4)
 		{
 			firedBullet = Instantiate(obj, transform.position, rotation) as Rigidbody2D;
 			firedBullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
